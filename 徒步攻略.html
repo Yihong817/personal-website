@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>徒步攻略网</title>
+    <style>
+        /* 整体布局 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* 头部区域 */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .search-bar {
+            display: flex;
+        }
+
+        .search-bar input {
+            padding: 5px;
+        }
+
+        .search-bar button {
+            padding: 5px 10px;
+            background-color: #555;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* 图片区域 */
+        .image-section {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .image-section img {
+            width: 800px;
+            height: 600px;
+            object-fit: cover;
+        }
+
+        /* 路线分类区域 */
+        .route-section {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .route-category {
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 30%;
+        }
+
+        /* 路线详情区域 */
+        .route-details {
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* 轻装路线图片容器 */
+        .light-route-image-container {
+            margin-top: 20px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .light-route-image-container img {
+            width: 100%;
+            height: auto;
+        }
+
+        .image-name {
+            margin-top: 10px;
+            /* 字体加粗 */
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 头部 -->
+    <div class="header">
+        <h1>徒步攻略网</h1>
+        <div class="search-bar">
+            <input type="text" placeholder="搜索">
+            <button>搜索</button>
+        </div>
+    </div>
+    <main>
+        <!-- 图片 -->
+        <div class="image-section">
+            <img src="./images/微信图片_20241124121732.jpg" alt="风景">
+        </div>
+        <!-- 路线分类 -->
+        <div class="route-section">
+            <div class="route-category" onclick="showAll()">全部</div>
+            <div class="route-category" onclick="showLightRoute()">轻装路线</div>
+            <div class="route-category" onclick="showHeavyRoute()">重装路线</div>
+            <div class="route-category" onclick="showSnowRoute()">非技术性雪山</div>
+        </div>
+        <!-- 轻装路线详情 -->
+        <div class="route-details" id="lightRouteDetails" style="display:none;">
+            <a href="none">
+                <div class="light-route-image-container" onclick="showImageDetails()">
+                    <img src="./images/R-C.jpg" alt="冈仁波齐">
+                    <div class="image-name">冈仁波齐</div>
+                </div>
+            </a>
+        </div>
+        <!-- 重装路线详情 -->
+        <div class="route-details" id="heavyRouteDetails" style="display:none;">
+            <!-- 重装路线图片及名字 -->
+            <a href="http://127.0.0.1:5500/%E8%B4%A1%E5%98%8E%E5%A4%A7%E7%8E%AF%E7%BA%BF.html">
+                <div class="light-route-image-container" onclick="showImageDetails()">
+                    <img src="./images/d1.jpg" alt="轻装路线示例图">
+                    <div class="image-name">贡嘎大环线</div>
+                </div>
+            </a>
+        </div>
+        <!-- 雪山攀登详情 -->
+        <div class="route-details" id="snowRouteDetails" style="display:none;">
+            <a href="none">
+                <div class="light-route-image-container" onclick="showImageDetails()">
+                    <img src="./images/v2-6e3e6bc396136115cf2addc00a3e794d_r.jpg" alt="奥太娜">
+                    <div class="image-name">奥太娜</div>
+                </div>
+            </a>
+        </div>
+    </main>
+    <!-- 版权 -->
+    <footer>
+        <p>2024徒步攻略网 &copy;蜉蝣All rights reserved</p>
+    </footer>
+
+    <script>
+        function showAll() {
+            document.getElementById('lightRouteDetails').style.display = 'block';
+            document.getElementById('heavyRouteDetails').style.display = 'block';
+            document.getElementById('snowRouteDetails').style.display = 'block';
+        }
+        function showLightRoute() {
+            // 隐藏所有详情
+            document.getElementById('lightRouteDetails').style.display = 'block';
+            document.getElementById('heavyRouteDetails').style.display = 'none';
+            document.getElementById('snowRouteDetails').style.display = 'none';
+        }
+
+        function showHeavyRoute() {
+            document.getElementById('lightRouteDetails').style.display = 'none';
+            document.getElementById('heavyRouteDetails').style.display = 'block';
+            document.getElementById('snowRouteDetails').style.display = 'none';
+        }
+
+        function showSnowRoute() {
+            document.getElementById('lightRouteDetails').style.display = 'none';
+            document.getElementById('heavyRouteDetails').style.display = 'none';
+            document.getElementById('snowRouteDetails').style.display = 'block';
+        }
+
+        function showImageDetails() {
+            alert('显示图片详情');
+        }
+    </script>
+</body>
+
+</html>
